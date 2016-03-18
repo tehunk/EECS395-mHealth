@@ -21,9 +21,14 @@
           <h1 id="project_title">A Sleeping Monitor for Snoring Detection</h1>
           <h2 id="project_tagline">Hongwei Cheng, Qian Wang, and Tae Hun Kim</h2>
 
-            <section id="downloads">
-              <a class="zip_download_link" href="https://github.com/tehunk/EECS395-mHealth/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/tehunk/EECS395-mHealth/tarball/master">Download this project as a tar.gz file</a>
+		  
+		  
+          
+		  <section id="downloads">
+			<a class="pdf_download_link" href="files/paper.pdf">Download PDF</a>
+			<p><strong>DOWNLOAD PDF</strong><p>
+              <!--<a class="zip_download_link" href="https://github.com/tehunk/EECS395-mHealth/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/tehunk/EECS395-mHealth/tarball/master">Download this project as a tar.gz file</a> -->
             </section>
         </header>
     </div>
@@ -54,10 +59,16 @@ breathing sounds using the mean and covariance of four features extracted from t
 <h5>
 <a id="sensor-hardware" class="anchor" href="#sensor-hardware" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Sensor Hardware</h5>
 
+<p><img src="images/sensor.jpg" alt="Sensor Block Diagram" height="50%" width="50%"><br>
+	Fig 1. Sensor Block Diagram</p>
+
 <p>The sensor consists of three parts, a mic to convert sound wave to electric signal, an analog amplifier to magnify the signal, and an Arduino. The signal is input into Arduino’s analog pin, with integrated ADC. Finally, digitalized signal is sent through arduino to mobile device at 20Hz sample rate. In algorithm, we’ll discuss that this is enough for a snoring detection process. However, in future work, we’ll consider that we use much higher sample for more complicated purpose.</p>
 
 <h5>
 <a id="system" class="anchor" href="#system" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>System</h5>
+
+<p><img src="images/system.jpg" alt="System Block Diagram" height="95%" width="95%"><br>
+	Fig 2. System Block Diagram</p>
 
 <p>Fig 2 shows a system diagram of how each parts work together. The snoring data is acquired through the sensor hardware, and sent to mobile device. The corresponding application on the device is more than a data gateway, which also labels the data with user information, such as user name, record date, location etc. The processed data is then sent to database in the server. </p>
 
@@ -88,6 +99,9 @@ breathing sounds using the mean and covariance of four features extracted from t
 <h5>
 <a id="anti-jittering" class="anchor" href="#anti-jittering" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Anti-Jittering</h5>
 
+<p><img src="images/plot.jpg" alt="Sliding Window Algorithm" height="50%" width="50%"><br>
+	Fig 3. Sliding Window Algorithm</p>
+
 <p>Since the sound signal is unpredictable, a single threshold can result in jittering, especially when the signal fluctuates up and down close to the threshold. We use a double threshold mechanism to avoid this. Threshold to enter snoring status is set to be higher than threshold to leave snoring status, which forms a container. When the data within the window fluctuates between the upper and lower threshold, it’s still in container, in the snoring status.</p>
 
 <h3>
@@ -113,6 +127,10 @@ breathing sounds using the mean and covariance of four features extracted from t
 
 <p>Our key insight is that snoring and un snoring data have distinguishable features in terms of energy and frequency. The disparity of spectral energy distributions among snoring and other signals suggests the use of spectral features may be helpful in order to distinguish among snoring sounds and breathing sounds. In order to build a simple classifier, we decided to extract the zero-crossing rate, spectral energy and spectral entropy of the signals after which has been divided to a certain number of subsystem during segmentation[4]. Due to the lack of snoring database, we have finished segmentation and labeling task. In the training step we found that the k-nearest neighbour algorithms could provide the best results with the least error.</p>
 </li>
+
+<p><img src="images/future_work.jpg" alt="Feature Classification" height="50%" width="50%"><br>
+	Fig 4. Feature Classification</p>
+
 <li>
 <p>Enhance our system by Clinical Trial </p>
 
@@ -135,6 +153,13 @@ breathing sounds using the mean and covariance of four features extracted from t
 <p>[3]  Counter P, Wilson JA (2004) The management of simple snoring. Sleep Med Rev 8: 433–441.</p>
 
 <p>[4]  Jones T M, Ho M-S, Earis J E and Swift A C 2006a Acoustic parameters of snoring sound to assess the effectiveness of sleep nasendoscopy in predicting surgical outcome Otolaryngol. Head Neck Surg. </p>
+<br><br><br>
+<hr>
+<h3>
+<a id="demo" class="anchor" href="#demo" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Demo Videos</h3>
+<p><iframe src="https://drive.google.com/a/u.northwestern.edu/file/d/0BzE2wYWCh_I0bmZJczVnTkNKMTg/preview" width="640" height="480"></iframe></p>
+<p><iframe src="https://drive.google.com/a/u.northwestern.edu/file/d/0BzE2wYWCh_I0U2pXeGJxUG9ScmM/preview" width="640" height="480"></iframe></p>
+
       </section>
     </div>
 
